@@ -1,6 +1,6 @@
-# qr
+# QR codes in the Dyalog APL session
 
-QR codes in the Dyalog APL session, drawn with the block characters ` ▀▄█`.
+Single self-contained APL function and user command wrapper implementing QR Code model 2 (ISO/IEC 18004), versions 1 to 40, with all four error correction levels, drawing with the block characters ` ▀▄█`:
 
 ```
       ]QR https://github.com/abrudz/qr -level=Q
@@ -21,8 +21,6 @@ QR codes in the Dyalog APL session, drawn with the block characters ` ▀▄█`
 ▀▀▀▀▀▀▀      ▀▀  ▀▀▀ ▀  ▀ ▀
 ```
 
-The encoder is a single self-contained APL function implementing QR Code model 2 (ISO/IEC 18004), versions 1 to 40, with all four error correction levels. [`qr.dyalog`](qr.dyalog) packages it as the user command `]TOOLS.QR`.
-
 ## Quick start
 
 Download the namespace into the active session, ready to use as a function:
@@ -36,27 +34,20 @@ Download the namespace into the active session, ready to use as a function:
 Save it to your user command folder to install the user command; it is available immediately, and in every later session:
 
 ```
-      ]save qr [HOME]MyUCMDs/ -makedir
+      ]save qr [HOME]MyUCMDs/ -m
       ]QR Hello, world
 ```
 
-`-makedir` creates `MyUCMDs` if it does not exist yet.
-
 ## Requirements
 
-Dyalog APL 18.0 or later, Unicode edition. Developed and tested with Dyalog 20.0.
+Dyalog APL 18.0 or later, Unicode edition.
 
 ## Installation
 
-As an alternative to the quick start, place `qr.dyalog` in a folder that Dyalog searches for user commands. The default user folder is `MyUCMDs` in your documents folder on Windows and in your home directory on macOS and Linux. Alternatively, add the folder containing this repository to the search path:
+As an alternative to the quick start, place [`qr.dyalog`](qr.dyalog) in a folder that Dyalog searches for user commands. The default user folder is `MyUCMDs` in your documents folder on Windows and in your home directory on macOS and Linux. Alternatively, add the folder containing this repository to the search path and reset the user commands:
 
 ```
       ]settings cmddir ,/path/to/qr -permanent
-```
-
-Then reload the user commands:
-
-```
       ]ureset
 ```
 
@@ -77,13 +68,13 @@ The text is the rest of the line, apart from the `-level` modifier. Enclose it i
 The function `QR` can be used on its own, without installing the user command:
 
 ```
-      ⎕FIX'file:///path/to/qr/qr.dyalog'
+      ⎕FIX'file://path/to/qr.dyalog'
       r←'H' qr.QR 'Hello, world'
       ⍴r
 13 25
 ```
 
-`QR` is ambivalent. The optional left argument is the error correction level, a character `'L'`, `'M'`, `'Q'` or `'H'` (default `'M'`). The right argument is a character vector or scalar. The result is a character matrix.
+`QR` is ambivalent; the optional left argument is the error correction level, a character `'L'`, `'M'`, `'Q'` or `'H'` (default `'M'`). The right argument is a character vector or scalar. The result is a character matrix.
 
 ### Error correction levels
 
@@ -119,7 +110,3 @@ python -m venv .venv
 .venv/bin/pip install -r tests/requirements.txt
 .venv/bin/python tests/verify.py
 ```
-
-## Licence
-
-[MIT](LICENSE)
