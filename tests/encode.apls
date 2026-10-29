@@ -1,0 +1,6 @@
+⍝ Fix the namespace in the file named by $QR_SOURCE, encode each [level,text]
+⍝ pair in cases.json, and write the rows (or the error message) to out.json.
+⎕FIX'file://',2 ⎕NQ'.' 'GetEnvironment' 'QR_SOURCE'
+cases←⎕JSON⊃⎕NGET'cases.json'
+out←{l t←⍵ ⋄ 0::'ERROR ',⎕DMX.EM ⋄ ↓l qr.QR t}¨cases
+(⎕JSON out)⎕NPUT'out.json' 1
