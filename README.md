@@ -23,13 +23,32 @@ QR codes in the Dyalog APL session, drawn with the block characters ` ▀▄█`
 
 The encoder is a single self-contained APL function implementing QR Code model 2 (ISO/IEC 18004), versions 1 to 40, with all four error correction levels. [`qr.dyalog`](qr.dyalog) packages it as the user command `]TOOLS.QR`.
 
+## Quick start
+
+Download the namespace into the active session, ready to use as a function:
+
+```
+      ]get github.com/abrudz/qr/blob/main/qr.dyalog
+#.qr
+      qr.QR 'Hello, world'
+```
+
+Save it to your user command folder to install the user command; it is available immediately, and in every later session:
+
+```
+      ]save qr [HOME]MyUCMDs/ -makedir
+      ]QR Hello, world
+```
+
+`-makedir` creates `MyUCMDs` if it does not exist yet.
+
 ## Requirements
 
 Dyalog APL 18.0 or later, Unicode edition. Developed and tested with Dyalog 20.0.
 
 ## Installation
 
-Place `qr.dyalog` in a folder that Dyalog searches for user commands. The default user folder is `MyUCMDs` in your documents folder on Windows and in your home directory on macOS and Linux. Alternatively, add the folder containing this repository to the search path:
+As an alternative to the quick start, place `qr.dyalog` in a folder that Dyalog searches for user commands. The default user folder is `MyUCMDs` in your documents folder on Windows and in your home directory on macOS and Linux. Alternatively, add the folder containing this repository to the search path:
 
 ```
       ]settings cmddir ,/path/to/qr -permanent
